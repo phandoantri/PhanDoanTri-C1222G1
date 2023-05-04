@@ -1,3 +1,4 @@
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%--
   Created by IntelliJ IDEA.
   User: ADMIN
@@ -8,9 +9,24 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>MAIL</title>
 </head>
 <body>
-
+<form:form action="/mail" method="post" modelAttribute="mail">
+    <form:select path="languages">
+        <form:options items="${listLanguages}"/>
+    </form:select>
+    <br>
+    <form:select path="pageSize">
+        <form:options items="${listPageSize}"/>
+    </form:select>
+    <br>
+    <form:label path="spamsFilter">Spams filter</form:label>
+    <form:input path="spamsFilter"/>
+    <br>
+    <form:label path="signature">signature</form:label>
+    <form:input path="signature"/>
+    <button type="submit">update</button>
+</form:form>
 </body>
 </html>
