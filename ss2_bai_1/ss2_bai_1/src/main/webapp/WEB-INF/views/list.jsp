@@ -18,22 +18,22 @@
 <body>
 <form action="/save">
     <div class="input-group">
-        <label for="lettuce"></label>
+        <label for="lettuce">lettuce</label>
         <input type="text"
                class="form-control" name="condiments" value="lettuce" id="lettuce" >
     </div>
     <div class="input-group">
-        <label for="tomato"></label>
+        <label for="tomato">tomato</label>
         <input type="text"
                class="form-control" name="condiments" value="tomato" id="tomato" >
     </div>
     <div class="input-group">
-        <label for="mustard"></label>
+        <label for="mustard">mustard</label>
         <input type="text"
                class="form-control" name="condiments" value="mustard" id="mustard" >
     </div>
     <div class="input-group">
-        <label for="sprouts"></label>
+        <label for="sprouts">sprouts</label>
         <input type="text"
                class="form-control" name="condiments" value="sprouts" id="sprouts" >
     </div>

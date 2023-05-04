@@ -9,15 +9,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.Arrays;
 
 @Controller
-@RequestMapping("save")
+@RequestMapping("/save")
 public class Sandwich {
     @GetMapping("")
     public String save(@RequestParam(required = false) String [] condiments, Model model ){
         if(condiments==null){
             model.addAttribute("condimentsList","");
-            return "list";
+            return "/list";
         }
         model.addAttribute("condimentsList", Arrays.toString(condiments));
-        return "list";
+        return "/list";
     }
 }
