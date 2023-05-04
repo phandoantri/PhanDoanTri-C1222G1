@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class Calculator {
-    CalculatorService calculatorService = new CalculatorService();
+    private CalculatorService calculatorService = new CalculatorService();
 
     @GetMapping("/calculator")
     public String result(@RequestParam(defaultValue = "0") int vnd, Model model) {

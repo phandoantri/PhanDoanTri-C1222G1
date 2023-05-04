@@ -13,10 +13,6 @@ import java.util.Arrays;
 public class Sandwich {
     @GetMapping("")
     public String save(@RequestParam(required = false) String [] condiments, Model model ){
-        if(condiments==null){
-            model.addAttribute("condimentsList","");
-            return "/list";
-        }
         model.addAttribute("condimentsList", Arrays.toString(condiments));
         return "/list";
     }

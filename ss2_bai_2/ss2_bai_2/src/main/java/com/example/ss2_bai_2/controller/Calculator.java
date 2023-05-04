@@ -13,13 +13,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping("/home")
 public class Calculator {
 
-   private ICalculatorService iCalculatorService = new CalculatorService();
+    private ICalculatorService iCalculatorService = new CalculatorService();
 
     @GetMapping("/calculator")
     public String calculator(@RequestParam(defaultValue = "0", name = "number1") int number1,
                              @RequestParam(defaultValue = "0", name = "number2") int number2,
-                             @RequestParam(defaultValue = "0", value = "calculator") String calculate, Model model){
-        model.addAttribute("result",iCalculatorService.result(calculate,number1,number2));
+                             @RequestParam(defaultValue = "0", value = "calculator") String calculate, Model model) {
+        model.addAttribute("result", iCalculatorService.result(calculate, number1, number2));
         return "/list";
 
     }
