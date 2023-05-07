@@ -16,10 +16,10 @@ public class Calculator {
     private ICalculatorService iCalculatorService = new CalculatorService();
 
     @GetMapping("/calculator")
-    public String calculator(@RequestParam(defaultValue = "0", name = "number1") int number1,
-                             @RequestParam(defaultValue = "0", name = "number2") int number2,
+    public String calculator(@RequestParam(defaultValue = "0", name = "firstNumber") int firstNumber,
+                             @RequestParam(defaultValue = "0", name = "secondNumber") int secondNumber,
                              @RequestParam(defaultValue = "0", value = "calculator") String calculate, Model model) {
-        model.addAttribute("result", iCalculatorService.result(calculate, number1, number2));
+        model.addAttribute("result", iCalculatorService.result(calculate, firstNumber, secondNumber));
         return "/list";
 
     }

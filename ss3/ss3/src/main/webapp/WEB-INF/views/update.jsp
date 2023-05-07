@@ -18,19 +18,19 @@
 </head>
 <body>
 <form:form action="/mail" method="post" modelAttribute="mail">
-    <form:select path="languages">
+    <form:select class="text-danger" path="languages">
         <form:options items="${listLanguages}"/>
     </form:select>
     <br>
-    <form:select path="pageSize">
+    <form:select class="text-primary key" path="pageSize">
         <form:options items="${listPageSize}"/>
     </form:select>
     <br>
     <form:label path="spamsFilter">Spams filter</form:label>
-    <form:input path="spamsFilter"/>
+    <form:checkbox path="spamsFilter"/> enable spams filter
     <br>
-    <form:label path="signature">signature</form:label>
-    <form:input path="signature"/>
+    <form:label  path="signature">signature</form:label>
+    <form:input  path="signature"/>
     <button type="submit">update</button>
 </form:form>
 </body>

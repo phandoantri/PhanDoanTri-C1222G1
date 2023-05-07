@@ -7,4 +7,8 @@ import java.util.List;
 public interface IMailService {
     List<Mail> getAll();
     void update(Mail mail);
+
+    List<String> getLanguageList();
+
+    List<Integer> getPageSize();
 }

@@ -4,7 +4,7 @@ public class Mail {
     private int id;
     private String languages;
     private int pageSize;
-    private String spamsFilter;
+    private boolean spamsFilter;
     private String signature;
 
     public String getLanguages() {
@@ -14,14 +14,14 @@ public class Mail {
     public Mail() {
     }
 
-    public Mail(String languages, int pageSize, String spamsFilter, String signature) {
+    public Mail(String languages, int pageSize, boolean spamsFilter, String signature) {
         this.languages = languages;
         this.pageSize = pageSize;
         this.spamsFilter = spamsFilter;
         this.signature = signature;
     }
 
-    public Mail(int id, String languages, int pageSize, String spamsFilter, String signature) {
+    public Mail(int id, String languages, int pageSize, boolean spamsFilter, String signature) {
         this.id = id;
         this.languages = languages;
         this.pageSize = pageSize;
@@ -41,11 +41,11 @@ public class Mail {
         this.pageSize = pageSize;
     }
 
-    public String getSpamsFilter() {
+    public boolean getSpamsFilter() {
         return spamsFilter;
     }
 
-    public void setSpamsFilter(String spamsFilter) {
+    public void setSpamsFilter(boolean spamsFilter) {
         this.spamsFilter = spamsFilter;
     }
 
