@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>list product</title>
+</head>
+<body>
+<button><a  th:href="@{/product/create-form}">Create</a></button>
+<table class="container">
+    <thead>
+    <tr>
+        <th>No</th>
+        <th>Name</th>
+        <th>Cost</th>
+        <th>Update</th>
+        <th>Delete</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="object,iterStat :${productList}">
+        <td scope="row" th:text="${object.id}"></td>
+        <td th:text="${object.name}"></td>
+        <td th:text="${object.cost}"></td>
+        <td><a th:href="@{/product/{id}/update(id=${object.id})}">Update</a></td>
+        <td>
+            <button th:onclick="|deleteById('${object.getId()}','${object.getName()}')|" type="button"
+                    class="btn btn-danger btn-lg" data-bs-toggle="modal" data-bs-target="#modelId">
+                Delete
+            </button>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

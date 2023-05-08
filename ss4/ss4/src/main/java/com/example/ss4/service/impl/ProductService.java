@@ -1,4 +1,4 @@
-package com.example.ss4.service.iplm;
+package com.example.ss4.service.impl;
 
 import com.example.ss4.model.Product;
 import com.example.ss4.repository.IProductRepository;

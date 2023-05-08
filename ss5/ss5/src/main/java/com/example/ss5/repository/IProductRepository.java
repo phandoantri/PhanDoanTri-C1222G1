@@ -1,6 +1,6 @@
-package com.example.ss4.repository;
+package com.example.ss5.repository;
 
-import com.example.ss4.model.Product;
+import com.example.ss5.model.Product;
 
 import java.util.List;
 
