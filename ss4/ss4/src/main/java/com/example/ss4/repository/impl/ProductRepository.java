@@ -12,9 +12,9 @@ public class ProductRepository implements IProductRepository {
     private static List<Product> productList = new ArrayList<>();
 
     static {
-        productList.add(new Product(1, "milk", 12000));
-        productList.add(new Product(2, "coca", 10000));
-        productList.add(new Product(3, "sting", 15000));
+        productList.add(new Product(1, "milk", 12000,"day la san pham cua vinamik"));
+        productList.add(new Product(2, "coca", 10000,"day la san pham cua cocacola"));
+        productList.add(new Product(3, "sting", 15000,"day la san pham cua thinh phat"));
 
     }
 

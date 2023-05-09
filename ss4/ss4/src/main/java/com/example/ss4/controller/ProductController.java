@@ -51,8 +51,8 @@ public class ProductController {
         return "redirect:/products";
     }
     @GetMapping("/searchProduct")
-    public String searchProduct(@RequestParam (value = "nameProduct")String nameProduct){
-        iProductService.searchProduct(nameProduct);
+    public String searchProduct(@RequestParam (value = "nameProduct")String nameProduct,Model model){
+        model.addAttribute("productList",iProductService.searchProduct(nameProduct));
         return "/list";
     }
 

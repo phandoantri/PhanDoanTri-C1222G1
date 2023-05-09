@@ -26,6 +26,7 @@
         <th>No</th>
         <th>Name</th>
         <th>Cost</th>
+        <th>Detail</th>
         <th>Update</th>
         <th>Delete</th>
     </tr>
@@ -35,6 +36,7 @@
         <td scope="row" th:text="${object.id}"></td>
         <td th:text="${object.name}"></td>
         <td th:text="${object.cost}"></td>
+        <td th:text="${object.detail}"></td>
         <td><a th:href="@{/products/{id}/update(id=${object.id})}">Update</a></td>
         <td>
             <button th:onclick="|deleteById('${object.getId()}','${object.getName()}')|" type="button"
