@@ -15,7 +15,7 @@ public class ProductController {
     @Autowired
     private IProductService iProductService;
 
-    @GetMapping("/showList")
+    @GetMapping()
     public String showList(Model model) {
         model.addAttribute("productList", this.iProductService.getAll());
         return "/list";
@@ -42,7 +42,7 @@ public class ProductController {
     @PostMapping("/updateProduct")
     public String updateProduct(Product product) {
         iProductService.update(product);
-        return "redirect:/product/showList";
+        return "redirect:/product";
     }
 
     @GetMapping("/deleteProduct")
@@ -50,5 +50,11 @@ public class ProductController {
         iProductService.delete(id);
         return "redirect:/product";
     }
+    @GetMapping("/searchByNameProduct")
+        public String searchProductByName(@RequestParam (value = "nameProduct")String nameProduct, Model model){
+        model.addAttribute("productList", iProductService.searchByNameProduct(nameProduct));
+        return "/list";
+    }
+
 
 }

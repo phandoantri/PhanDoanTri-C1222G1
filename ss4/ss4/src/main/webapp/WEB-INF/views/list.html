@@ -12,6 +12,14 @@
 <body class="container">
 <h2 style="text-align: center">Management Product</h2>
 <button><a th:href="@{/products/create-form}">create new product</a></button>
+<form action="/products/searchProduct">
+    <div class="input-group">
+        <label for=""></label>
+        <input type="text"
+               class="form-control" name="nameProduct" id="" aria-describedby="helpId" placeholder="">
+       <button type="submit">Search</button>
+    </div>
+</form>
 <table class="table">
     <thead>
     <tr>

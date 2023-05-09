@@ -69,7 +69,25 @@ public class ProductRepository implements IProductRepository {
 
     @Override
     public void delete(int id) {
+        Session session;
+        Transaction transaction;
+        try {
+            Product product = findById(id);
+            session = ConnectionUtil.sessionFactory.openSession();
+            transaction = session.beginTransaction();
+            session.delete(product);
+            transaction.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
+    }
+
+    @Override
+    public List<Product> searchByNameProduct(String nameProduct) {
+        Session session = ConnectionUtil.sessionFactory.openSession();
+        String query = "FROM Product where name like concat('%',:nameProduct,'%')";
+        return session.createQuery(query, Product.class).setParameter("nameProduct", nameProduct).getResultList();
     }
 
 

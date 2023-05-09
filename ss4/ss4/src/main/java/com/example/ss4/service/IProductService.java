@@ -10,4 +10,6 @@ public interface IProductService {
     void save(Product product);
     void update(Product product);
     void delete(int id);
+
+    Product searchProduct(String nameProduct);
 }

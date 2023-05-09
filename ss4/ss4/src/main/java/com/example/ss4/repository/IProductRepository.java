@@ -10,4 +10,6 @@ public interface IProductRepository {
     Product findById(int id);
     void update(Product product);
     void delete( int id);
+
+    Product searchProduct(String nameProduct);
 }
