@@ -1,6 +1,6 @@
-package com.example.ss6.service;
+package com.example.ss6_1.service;
 
-import com.example.ss6.model.TypeBlog;
+import com.example.ss6_1.model.TypeBlog;
 
 import java.util.List;
 

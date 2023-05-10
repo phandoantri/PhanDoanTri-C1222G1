@@ -46,14 +46,21 @@ public class ProductController {
     }
 
     @GetMapping("/deleteProduct")
-    public String deleteProduct(@RequestParam(value = "id")int id){
+    public String deleteProduct(@RequestParam(value = "id") int id) {
         iProductService.delete(id);
         return "redirect:/products";
     }
+
     @GetMapping("/searchProduct")
-    public String searchProduct(@RequestParam (value = "nameProduct")String nameProduct,Model model){
-        model.addAttribute("productList",iProductService.searchProduct(nameProduct));
+    public String searchProduct(@RequestParam(value = "nameProduct", defaultValue = "") String nameProduct, Model model) {
+        model.addAttribute("productList", iProductService.searchProduct(nameProduct));
         return "/list";
+    }
+
+    @GetMapping("/{id}/detail")
+    public String detailProduct(@PathVariable(value = "id") int id, Model model) {
+        model.addAttribute("product", iProductService.findById(id));
+        return "/detail";
     }
 
 }

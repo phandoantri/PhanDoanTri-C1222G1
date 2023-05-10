@@ -28,6 +28,7 @@
         <th>Cost</th>
         <th>Detail</th>
         <th>Update</th>
+        <th>Detail</th>
         <th>Delete</th>
     </tr>
     </thead>
@@ -38,6 +39,7 @@
         <td th:text="${object.cost}"></td>
         <td th:text="${object.detail}"></td>
         <td><a th:href="@{/products/{id}/update(id=${object.id})}">Update</a></td>
+        <td><a th:href="@{/products/{id}/detail(id=${object.id})}">Detail</a></td>
         <td>
             <button th:onclick="|deleteById('${object.getId()}','${object.getName()}')|" type="button"
                     class="btn btn-danger btn-lg" data-bs-toggle="modal" data-bs-target="#modelId">
@@ -75,6 +77,7 @@
         </div>
     </div>
 </div>
+
 </body>
 </html>
 
