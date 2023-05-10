@@ -4,6 +4,9 @@ import com.example.ss6_1.model.Blog;
 import com.example.ss6_1.service.IBlogService;
 import com.example.ss6_1.service.ITypeBlogService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -17,8 +20,9 @@ public class BlogController {
     private ITypeBlogService iTypeBlogService;
 
     @GetMapping()
-    public String showListBlog(Model model) {
-        model.addAttribute("blogList", this.iBlogService.getAll());
+    public String showListBlog(Model model,
+                               @PageableDefault(size = 1) Pageable pageable) {
+        model.addAttribute("blogList", this.iBlogService.getAll(pageable));
         return "/blogs/list";
     }
 

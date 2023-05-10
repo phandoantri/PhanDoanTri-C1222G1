@@ -40,6 +40,14 @@
   </tbody>
   </tr>
 </table>
+<div>
+  <a th:href="@{/blogs/(page=${blogList.number-1})}" th:if="${blogList.hasPrevious()}">Previous</a>
+
+  <span th:text="${blogList.number+1}"></span> /
+  <span th:text="${blogList.totalPages}"></span>
+
+  <a th:href="@{/blogs/(page=${blogList.number+1})}" th:if="${blogList.hasNext()}">Next</a>
+</div>
 <script>
   function deleteById(id, name){
     document.getElementById("idDelete").value = id;
