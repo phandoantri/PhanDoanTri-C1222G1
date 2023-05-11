@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>list bai hat</title>
+</head>
+<body>
+<a th:href="@{/baiHat/create-form}">Create</a>
+<table class="table" border="1">
+  <thead>
+  <tr>
+    <th>Ten bai hat</th>
+    <th>Nghe si the hien</th>
+    <th>The loai nhac</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="baiHat,inerStat :${baiHatList}">
+    <td scope="row" th:text="${baiHat.tenBaiHat}"></td>
+    <td th:text="${baiHat.ngheSi}"></td>
+    <td th:text="${baiHat.theLoai}"></td>
+  </tr>
+  </tbody>
+</table>
+</body>
+</html>
