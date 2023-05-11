@@ -11,6 +11,7 @@ public class Blog {
     private String title;
     private String content;
     private String author;
+
     @ManyToOne
     @JoinColumn(name = "id_type_blog", referencedColumnName = "idTypeBlog")
     private TypeBlog typeBlog;

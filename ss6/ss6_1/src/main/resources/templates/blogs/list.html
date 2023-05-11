@@ -20,6 +20,7 @@
     <th>Author</th>
     <th>Type blog</th>
     <th>Update</th>
+    <th>Detail</th>
     <th>Delete</th>
   </tr>
   </thead>
@@ -31,6 +32,7 @@
     <td th:text="${object.author}"></td>
     <td th:text="${object.typeBlog.nameTypeBlog}"></td>
     <td><a th:href="@{/blogs/{id}/update(id=${object.id})}">Update</a></td>
+    <td><a th:href="@{/blogs/{id}/detail(id=${object.id})}">Detail</a></td>
     <td>
       <button th:onclick="|deleteById('${object.getId()}')|" type="button"
               class="btn btn-danger btn-lg" data-bs-toggle="modal" data-bs-target="#modelId">

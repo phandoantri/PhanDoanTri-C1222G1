@@ -1,6 +1,7 @@
 package com.example.ss6_1.controller;
 
 import com.example.ss6_1.model.Blog;
+import com.example.ss6_1.model.TypeBlog;
 import com.example.ss6_1.service.IBlogService;
 import com.example.ss6_1.service.ITypeBlogService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,8 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/blogs")
@@ -56,6 +59,14 @@ public class BlogController {
     private String update(Blog blog){
         iBlogService.update(blog);
         return "redirect:/blogs";
+    }
+    @GetMapping("/{id}/detail")
+    public String detailProduct(@PathVariable(value = "id") int id, Model model) {
+        Blog blog=iBlogService.findById(id);
+        model.addAttribute("blog", blog);
+        List<TypeBlog> typeBlogs=iTypeBlogService.getAll();
+        model.addAttribute("typeBlog",typeBlogs);
+        return "/blogs/detail";
     }
 
 }

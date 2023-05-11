@@ -11,6 +11,7 @@ public class TypeBlog {
     @Id
     private int idTypeBlog;
     private String nameTypeBlog;
+
     @OneToMany(mappedBy = "typeBlog")
     private List<Blog> blogs;
 

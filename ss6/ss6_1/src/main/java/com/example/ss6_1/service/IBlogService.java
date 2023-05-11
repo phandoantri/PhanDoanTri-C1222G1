@@ -8,7 +8,6 @@ import java.util.List;
 
 public interface IBlogService {
     Page<Blog> getAll(Pageable pageable);
-
     void save(Blog blog);
     void delete(int id);
     Blog findById(int id);
