@@ -9,7 +9,7 @@ import java.util.Date;
 
 @Entity
 @Table(name = "user_manager")
-public class User implements Validator {
+public class User  {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -79,13 +79,4 @@ public class User implements Validator {
         this.email = email;
     }
 
-    @Override
-    public boolean supports(Class<?> clazz) {
-        return false;
-    }
-
-    @Override
-    public void validate(Object target, Errors errors) {
-
-    }
 }

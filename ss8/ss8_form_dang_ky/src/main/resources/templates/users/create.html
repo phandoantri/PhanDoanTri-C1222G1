@@ -31,7 +31,7 @@
     </div>
     <div class="input-group">
         <label for="age">Date of birth :</label>
-        <input type="datetime-local"
+        <input type="date"
                class="form-control" name="" id="age" aria-describedby="helpId" placeholder="" th:field="*{age}">
         <span th:if="${#fields.hasErrors()}" th:errors="*{age}"></span>
     </div>

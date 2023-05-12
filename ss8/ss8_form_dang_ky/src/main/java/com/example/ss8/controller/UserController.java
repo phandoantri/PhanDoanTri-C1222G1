@@ -36,6 +36,7 @@ public class UserController {
     }
     @PostMapping("/create")
     public String createUser(@Validated @ModelAttribute("user") UserDTO userDTO, BindingResult bindingResult){
+        new UserDTO().validate(userDTO,bindingResult);
         if (bindingResult.hasErrors()){
             return "/users/create";
         }
