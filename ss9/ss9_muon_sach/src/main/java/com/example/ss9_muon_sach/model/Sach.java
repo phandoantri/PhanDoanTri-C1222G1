@@ -1,19 +1,31 @@
 package com.example.ss9_muon_sach.model;
 
+import javax.persistence.*;
+import java.util.List;
+
+@Entity
+@Table(name = "quan_ly_sach")
 public class Sach {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String tenSach;
     private int  soLuong;
-    private int maSachMuon;
+    @ManyToMany
+    @JoinTable(
+            name = "sach_muon",
+            joinColumns = @JoinColumn(name = "sach_id"),
+            inverseJoinColumns = @JoinColumn(name = "phieu_muon_id"))
+    List<PhieuMuon> phieuMuons;
+
 
     public Sach() {
     }
 
-    public Sach(int id, String tenSach, int soLuong, int maSachMuon) {
+    public Sach(int id, String tenSach, int soLuong) {
         this.id = id;
         this.tenSach = tenSach;
         this.soLuong = soLuong;
-        this.maSachMuon = maSachMuon;
     }
 
     public int getId() {
@@ -40,11 +52,5 @@ public class Sach {
         this.soLuong = soLuong;
     }
 
-    public int getMaSachMuon() {
-        return maSachMuon;
-    }
 
-    public void setMaSachMuon(int maSachMuon) {
-        this.maSachMuon = maSachMuon;
-    }
 }

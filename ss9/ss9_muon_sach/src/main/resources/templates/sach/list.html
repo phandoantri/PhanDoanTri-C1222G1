@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>List sach</title>
+</head>
+<body>
+<table class="table" border="1">
+    <thead>
+    <tr>
+        <th>Ten sach</th>
+        <th>So luong</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="sach,inerStat :${sachList}" >
+        <td scope="row"th:text="${sach.tenSach}"></td>
+        <td th:text="${sach.soLuong}"></td>
+        <td> <td><a th:href="@{/sach/{id}/muon(id=${sach.id})}">Muon</a></td></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
