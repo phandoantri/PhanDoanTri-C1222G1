@@ -7,4 +7,5 @@ import java.util.List;
 public interface ISachService {
     List<Sach> getAll();
     Sach finById(int id);
+    void save(Sach sach);
 }

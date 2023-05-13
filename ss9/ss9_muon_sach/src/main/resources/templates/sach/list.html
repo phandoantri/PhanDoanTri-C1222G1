@@ -16,7 +16,7 @@
     <tr th:each="sach,inerStat :${sachList}" >
         <td scope="row"th:text="${sach.tenSach}"></td>
         <td th:text="${sach.soLuong}"></td>
-        <td> <td><a th:href="@{/sach/{id}/muon(id=${sach.id})}">Muon</a></td></td>
+       <td><a th:href="@{/sach/{id}/muon(id=${sach.id})}">Muon</a></td>
     </tr>
     </tbody>
 </table>

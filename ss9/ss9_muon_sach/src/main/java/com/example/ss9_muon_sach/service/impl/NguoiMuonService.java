@@ -15,4 +15,14 @@ public class NguoiMuonService implements INguoiMuonService {
     public List<PhieuMuon> getAll() {
         return iNguoiMuonRepository.findAll();
     }
+
+    @Override
+    public PhieuMuon findById(int id) {
+        return iNguoiMuonRepository.findById(id).get();
+    }
+
+    @Override
+    public void save(PhieuMuon phieuMuon) {
+        iNguoiMuonRepository.save(phieuMuon);
+    }
 }

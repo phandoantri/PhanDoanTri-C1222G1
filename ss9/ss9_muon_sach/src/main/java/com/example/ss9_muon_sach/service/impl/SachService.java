@@ -20,4 +20,9 @@ public class SachService implements ISachService {
     public Sach finById(int id) {
         return iSachRepository.findById(id).get();
     }
+
+    @Override
+    public void save(Sach sach) {
+        iSachRepository.save(sach);
+    }
 }

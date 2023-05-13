@@ -1,9 +1,6 @@
 package com.example.ss9_muon_sach.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
@@ -11,6 +8,7 @@ import java.util.List;
 @Table(name = "phieu_muon")
 public class PhieuMuon {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int idNguoiMuon;
     private String tenNguoiMuon;
     private int maMuon;

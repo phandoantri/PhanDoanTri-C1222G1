@@ -7,7 +7,7 @@ import java.util.List;
 @Table(name = "quan_ly_sach")
 public class Sach {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private String tenSach;
     private int  soLuong;
@@ -34,6 +34,14 @@ public class Sach {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public List<PhieuMuon> getPhieuMuons() {
+        return phieuMuons;
+    }
+
+    public void setPhieuMuons(List<PhieuMuon> phieuMuons) {
+        this.phieuMuons = phieuMuons;
     }
 
     public String getTenSach() {

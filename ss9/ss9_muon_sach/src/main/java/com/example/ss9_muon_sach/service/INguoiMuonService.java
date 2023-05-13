@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface INguoiMuonService {
     List<PhieuMuon> getAll();
+    PhieuMuon findById(int id);
+    void save(PhieuMuon phieuMuon);
 }
