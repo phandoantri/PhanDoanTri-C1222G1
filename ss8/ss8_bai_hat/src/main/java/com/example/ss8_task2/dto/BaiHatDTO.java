@@ -7,15 +7,15 @@ import javax.validation.constraints.Size;
 public class BaiHatDTO {
     @NotBlank
     @Size(max = 800)
-    @Pattern(regexp = "^((?=[A-Za-z0-9,])(?![_\\\\\\\\-]).)*$",message = "Khong duoc chua cac ky tu dac biet")
+    @Pattern(regexp = "^((?=[A-Za-z0-9,])(?![_\\\\\\\\-]).)$",message = "Khong duoc chua cac ky tu dac biet")
     private String tenBaiHat;
     @NotBlank
     @Size(max = 800)
-    @Pattern(regexp = "^((?=[A-Za-z0-9,])(?![_\\\\\\\\-]).)*$",message = "Khong duoc chua cac ky tu dac biet")
+    @Pattern(regexp = "^((?=[A-Za-z0-9,])(?![_\\\\\\\\-]).)$",message = "Khong duoc chua cac ky tu dac biet")
     private String ngheSi;
     @NotBlank
     @Size(max = 1000)
-    @Pattern(regexp = "^((?=[A-Za-z0-9,])(?![_\\\\\\\\-]).)*$",message = "Khong duoc chua cac ky tu dac biet")
+    @Pattern(regexp = "^((?=[A-Za-z0-9,])(?![_\\\\\\\\-]).)$",message = "Khong duoc chua cac ky tu dac biet")
     private String theLoai;
 
     public BaiHatDTO() {
