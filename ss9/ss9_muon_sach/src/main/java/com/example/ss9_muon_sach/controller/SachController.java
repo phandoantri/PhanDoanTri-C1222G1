@@ -2,10 +2,10 @@ package com.example.ss9_muon_sach.controller;
 
 import com.example.ss9_muon_sach.exception.ExceptionWhenBorrowError;
 import com.example.ss9_muon_sach.exception.ExceptionWhenPayError;
-import com.example.ss9_muon_sach.model.PhieuMuon;
-import com.example.ss9_muon_sach.model.Sach;
-import com.example.ss9_muon_sach.service.INguoiMuonService;
-import com.example.ss9_muon_sach.service.ISachService;
+import com.example.ss9_muon_sach.model.Order;
+import com.example.ss9_muon_sach.model.Book;
+import com.example.ss9_muon_sach.service.IOrderService;
+import com.example.ss9_muon_sach.service.IBookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,34 +17,33 @@ import java.util.List;
 @RequestMapping("/sach")
 public class SachController {
     @Autowired
-    private ISachService iSachService;
+    private IBookService iSachService;
     @Autowired
-    private INguoiMuonService iNguoiMuonService;
+    private IOrderService iNguoiMuonService;
 
     @GetMapping()
     public String showListSach(Model model) {
-        model.addAttribute("sachList", iSachService.getAll());
+        model.addAttribute("bookList", iSachService.getAll());
         return "/sach/list";
     }
 
     @GetMapping("/{id}/muon")
     public String muonSach(@PathVariable int id) throws ExceptionWhenBorrowError {
-        Sach sach = iSachService.finById(id);
-        if (sach.getSoLuong() == 0) {
+        Book book = iSachService.finById(id);
+        if (book.getQuantity() == 0) {
             throw new ExceptionWhenBorrowError();
         }
-        sach.setSoLuong(sach.getSoLuong() - 1);
-
-        PhieuMuon phieuMuon = new PhieuMuon();
-        int maMuon = (int) (Math.random() * (99999 - 10000) + 10000);
-        phieuMuon.setMaMuon(maMuon);
-        long thoiGian = System.currentTimeMillis();
-        phieuMuon.setNgayMuon(new java.sql.Date(thoiGian));
-        List<PhieuMuon> phieuMuons = sach.getPhieuMuons();
-        phieuMuons.add(phieuMuon);
-        sach.setPhieuMuons(phieuMuons);
-        iNguoiMuonService.save(phieuMuon);
-        iSachService.save(sach);
+        book.setQuantity(book.getQuantity() - 1);
+        Order order = new Order();
+        int code = (int) (Math.random() * (99999 - 10000) + 10000);
+        order.setCode(code);
+        long time = System.currentTimeMillis();
+        order.setDate(new java.sql.Date(time));
+        List<Order> orderList = book.getOrderList();
+        orderList.add(order);
+        book.setOrderList(orderList);
+        iNguoiMuonService.save(order);
+        iSachService.save(book);
         return "redirect:/sach";
     }
 
@@ -53,18 +52,20 @@ public class SachController {
         return "/sach/whenBorrowError";
     }
 
-    @GetMapping("/tra")
-    public String traForm() {
+    @GetMapping("/{id}/tra")
+    public String traForm(@PathVariable int id, Model model) {
+        model.addAttribute("code",iSachService.finById(id));
         return "/sach/checkCode";
     }
 
     @GetMapping("/traSach")
-    public String traSach(@RequestParam(value = "ma") int ma) throws ExceptionWhenPayError {
-        List<Sach> sachs = iSachService.getAll();
-        List<PhieuMuon> muons = iNguoiMuonService.getAll();
-        for (int i = 0; i < muons.size(); i++) {
-            if (muons.get(i).getMaMuon() == ma) {
-                sachs.get(i).setSoLuong(sachs.get(i).getSoLuong()+1);
+    public String traSach(@RequestParam(value = "ma") int ma,@RequestParam(value = "id")int id) throws ExceptionWhenPayError {
+        List<Order> orderList = iNguoiMuonService.getAll();
+        Book book = iSachService.finById(id);
+        for (int i = 0; i < orderList.size(); i++) {
+            if (orderList.get(i).getCode() == ma) {
+                book.setQuantity(book.getQuantity()+1);
+                iSachService.save(book);
                 return "redirect:/sach";
             }
         }

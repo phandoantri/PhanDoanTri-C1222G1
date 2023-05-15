@@ -1,28 +1,28 @@
 package com.example.ss9_muon_sach.service.impl;
 
-import com.example.ss9_muon_sach.model.PhieuMuon;
-import com.example.ss9_muon_sach.repository.INguoiMuonRepository;
-import com.example.ss9_muon_sach.service.INguoiMuonService;
+import com.example.ss9_muon_sach.model.Order;
+import com.example.ss9_muon_sach.repository.IOrderRepository;
+import com.example.ss9_muon_sach.service.IOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 @Service
-public class NguoiMuonService implements INguoiMuonService {
+public class OrderService implements IOrderService {
     @Autowired
-    private INguoiMuonRepository iNguoiMuonRepository;
+    private IOrderRepository iNguoiMuonRepository;
     @Override
-    public List<PhieuMuon> getAll() {
+    public List<Order> getAll() {
         return iNguoiMuonRepository.findAll();
     }
 
     @Override
-    public PhieuMuon findById(int id) {
+    public Order findById(int id) {
         return iNguoiMuonRepository.findById(id).get();
     }
 
     @Override
-    public void save(PhieuMuon phieuMuon) {
+    public void save(Order phieuMuon) {
         iNguoiMuonRepository.save(phieuMuon);
     }
 }

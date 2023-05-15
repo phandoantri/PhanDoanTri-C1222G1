@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Check code</title>
@@ -10,9 +10,10 @@
             crossorigin="anonymous"></script>
 </head>
 <body class="container">
-<form action="/sach/traSach">
+<form action="/sach/traSach" th:object="${code}">
     <div class="input-group">
         <label for="ma">Nhap ma muon tra</label>
+        <input th:field="*{id}" name="id" type="hidden">
         <input type="number"
                class="form-control" name="ma" id="ma" aria-describedby="helpId" placeholder="">
         <button type="submit">Tra</button>

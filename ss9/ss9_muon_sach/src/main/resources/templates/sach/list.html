@@ -19,15 +19,15 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:each="sach,inerStat :${sachList}">
-        <td scope="row" th:text="${sach.tenSach}"></td>
-        <td th:text="${sach.soLuong}"></td>
-        <td><a th:href="@{/sach/{id}/muon(id=${sach.id})}">Muon</a></td>
-
+    <tr th:each="book,inerStat :${bookList}">
+        <td scope="row" th:text="${book.name}"></td>
+        <td th:text="${book.quantity}"></td>
+        <td><a th:href="@{/sach/{id}/muon(id=${book.id})}">Muon</a></td>
+        <td><a th:href="@{/sach/{id}/tra(id=${book.id})}" >Tra</a></td>
     </tr>
     </tbody>
 </table>
-   <a th:href="@{/sach/tra}" >Tra</a>
+
 
 
 </body>

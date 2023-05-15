@@ -24,7 +24,6 @@ public class UserDTO implements Validator {
     private String phoneNumber;
 
     private String age;
-    //    @Pattern(regexp = "^[A-Za-z0-9]+[A-Za-z0-9]*@[A-Za-z0-9]+(\\\\.[A-Za-z0-9]+)$")
     @Email
     private String email;
 
