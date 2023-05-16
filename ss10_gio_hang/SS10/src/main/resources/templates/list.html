@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>List Product</title>
+</head>
+<body>
+<table class="table" border="1">
+    <thead>
+    <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Image</th>
+        <th>Quantity</th>
+        <th>Detail</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="product,inerstat :${productList}">
+        <td scope="row"th:text="${product.id}"></td>
+        <td th:text="${product.name}"></td>
+        <td th:text="${product.price}"></td>
+        <td><img th:src="${product.link}" width="100px" height="100px"></td>
+        <td th:text="${product.quantity}"></td>
+        <td><a th:href="@{/products/{id}/detail(id=${product.id})}">Detail</a></td>
+    </tr>
+
+    </tbody>
+</table>
+</body>
+</html>
