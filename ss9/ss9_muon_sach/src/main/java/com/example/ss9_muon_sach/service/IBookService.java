@@ -7,5 +7,5 @@ import java.util.List;
 public interface IBookService {
     List<Book> getAll();
     Book finById(int id);
-    void save(Book sach);
+    void save(Book book);
 }

@@ -14,67 +14,68 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-@RequestMapping("/sach")
-public class SachController {
+@RequestMapping("/books")
+public class BookController {
     @Autowired
-    private IBookService iSachService;
+    private IBookService iBookService;
     @Autowired
-    private IOrderService iNguoiMuonService;
+    private IOrderService iOrderService;
 
     @GetMapping()
     public String showListSach(Model model) {
-        model.addAttribute("bookList", iSachService.getAll());
-        return "/sach/list";
+        model.addAttribute("bookList", iBookService.getAll());
+        return "/book/list";
     }
 
-    @GetMapping("/{id}/muon")
-    public String muonSach(@PathVariable int id) throws ExceptionWhenBorrowError {
-        Book book = iSachService.finById(id);
+    @GetMapping("/{id}/borrow")
+    public String borrowBook(@PathVariable int id) throws ExceptionWhenBorrowError {
+        Book book = iBookService.finById(id);
         if (book.getQuantity() == 0) {
             throw new ExceptionWhenBorrowError();
         }
         book.setQuantity(book.getQuantity() - 1);
         Order order = new Order();
-        int code = (int) (Math.random() * (99999 - 10000) + 10000);
+        int code;
+        do {
+            code = (int) (Math.random() * (99999 - 10000) + 10000);
+        } while (iOrderService.findByCode(code)!=false);
         order.setCode(code);
         long time = System.currentTimeMillis();
         order.setDate(new java.sql.Date(time));
         List<Order> orderList = book.getOrderList();
         orderList.add(order);
         book.setOrderList(orderList);
-        iNguoiMuonService.save(order);
-        iSachService.save(book);
-        return "redirect:/sach";
+        iOrderService.save(order);
+        iBookService.save(book);
+        return "redirect:/books";
     }
 
     @ExceptionHandler(ExceptionWhenBorrowError.class)
     public String handleException(Exception exception) {
-        return "/sach/whenBorrowError";
+        return "/book/whenBorrowError";
     }
 
-    @GetMapping("/{id}/tra")
-    public String traForm(@PathVariable int id, Model model) {
-        model.addAttribute("code",iSachService.finById(id));
-        return "/sach/checkCode";
+    @GetMapping("/{id}/pay")
+    public String payForm(@PathVariable int id, Model model) {
+        model.addAttribute("code", iBookService.finById(id));
+        return "/book/checkCode";
     }
 
-    @GetMapping("/traSach")
-    public String traSach(@RequestParam(value = "ma") int ma,@RequestParam(value = "id")int id) throws ExceptionWhenPayError {
-        List<Order> orderList = iNguoiMuonService.getAll();
-        Book book = iSachService.finById(id);
-        for (int i = 0; i < orderList.size(); i++) {
-            if (orderList.get(i).getCode() == ma) {
-                book.setQuantity(book.getQuantity()+1);
-                iSachService.save(book);
-                return "redirect:/sach";
-            }
+    @GetMapping("/payBook")
+    public String payBook(@RequestParam(value = "code") int code, @RequestParam(value = "id") int id) throws ExceptionWhenPayError {
+        List<Order> orderList = iOrderService.getAll();
+        Book book = iBookService.finById(id);
+        if (iOrderService.findByCode(code) == true) {
+            book.setQuantity(book.getQuantity() + 1);
+            iBookService.save(book);
+            return "redirect:/books";
         }
         throw new ExceptionWhenPayError();
     }
 
     @ExceptionHandler(ExceptionWhenPayError.class)
     public String ExceptionWhenError(Exception exception) {
-        return "/sach/whenPayError";
+        return "/book/whenPayError";
     }
 
 }

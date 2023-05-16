@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Xuat Chieu</title>
+</head>
+<body>
+<form action="/xuatChieu/createXuatchieu" method="post" th:object="${xuatChieuDTO}">
+    <input type="hidden" th:field="*{id}">
+    <div class="input-group" >
+        <label for="id">ID</label>
+        <input type="text"
+               class="form-control" name="id" id="id" aria-describedby="helpId" placeholder="" th:field="*{code}">
+    </div>
+    <span th:if="${#fields.hasErrors('code')}" th:errors="*{code}"></span>
+    <div class="input-group" >
+        <label for="date">Ngay chieu :</label>
+        <input type="text"
+               class="form-control" name="date" id="date" aria-describedby="helpId" placeholder="" th:field="*{ngayChieu}">
+    </div>
+    <span th:if="${#fields.hasErrors('ngayChieu')}" th:errors="*{ngayChieu}"></span>
+    <div class="input-group" >
+        <label for="quantity">So luong :</label>
+        <input type="text"
+               class="form-control" name="quantity" id="quantity" aria-describedby="helpId" placeholder="" th:field="*{soLuongVe}">
+    </div>
+    <span th:if="${#fields.hasErrors('soLuongVe')}" th:errors="*{soLuongVe}"></span>
+    <select th:field="*{phim}">
+        <option th:each="phim,innerstat :${phimList}" th:value="${phim.getId()}">
+            <p th:text="${phim.getName()}"></p>
+        </option>
+    </select>
+    <button type="submit">Create</button>
+</form>
+</body>
+</html>

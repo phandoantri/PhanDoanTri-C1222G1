@@ -10,19 +10,32 @@ import java.util.List;
 @Service
 public class OrderService implements IOrderService {
     @Autowired
-    private IOrderRepository iNguoiMuonRepository;
+    private IOrderRepository iOrderRepository;
     @Override
     public List<Order> getAll() {
-        return iNguoiMuonRepository.findAll();
+        return iOrderRepository.findAll();
     }
 
     @Override
     public Order findById(int id) {
-        return iNguoiMuonRepository.findById(id).get();
+        return iOrderRepository.findById(id).get();
     }
 
     @Override
-    public void save(Order phieuMuon) {
-        iNguoiMuonRepository.save(phieuMuon);
+    public void save(Order order) {
+        iOrderRepository.save(order);
     }
+
+    @Override
+    public boolean findByCode(int code) {
+        List<Order> orderList=iOrderRepository.findAll();
+        for (int i=0;i<orderList.size();i++){
+            if (orderList.get(i).getCode()==code){
+                return true;
+            }
+        }
+        return false;
+    }
+
+
 }
