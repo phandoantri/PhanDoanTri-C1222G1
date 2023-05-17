@@ -3,19 +3,29 @@ package com.example.ss10.dto;
 public class ProductFromCartDTO {
     private int id;
     private String name;
-    private String price;
+    private int price;
     private String link;
     private int quantity;
+    private int total;
 
     public ProductFromCartDTO() {
     }
 
-    public ProductFromCartDTO(int id, String name, String price, String link, int quantity) {
+    public ProductFromCartDTO(int id, String name, int price, String link, int quantity) {
         this.id = id;
         this.name = name;
         this.price = price;
         this.link = link;
         this.quantity = quantity;
+    }
+
+    public ProductFromCartDTO(int id, String name, int price, String link, int quantity, int total) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+        this.link = link;
+        this.quantity = quantity;
+        this.total = total;
     }
 
     public int getId() {
@@ -34,11 +44,11 @@ public class ProductFromCartDTO {
         this.name = name;
     }
 
-    public String getPrice() {
+    public int getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 
@@ -56,5 +66,13 @@ public class ProductFromCartDTO {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public int getTotal() {
+        return total;
+    }
+
+    public void setTotal(int total) {
+        this.total = total;
     }
 }

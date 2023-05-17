@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class ProductService implements IProductService {
@@ -22,5 +23,10 @@ public class ProductService implements IProductService {
     @Override
     public Product getProductById(int id) {
         return iProductRepository.findById(id).get();
+    }
+
+    @Override
+    public List<Product> getListProductByIds(Set<Integer> ids) {
+        return iProductRepository.findByIdIn(ids);
     }
 }

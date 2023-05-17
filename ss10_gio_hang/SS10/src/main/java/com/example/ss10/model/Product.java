@@ -9,19 +9,19 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
-    private String price;
+    private int price;
     private String link;
-    private int quantity;
+
+
 
     public Product() {
     }
 
-    public Product(int id, String name, String price, String link, int quantity) {
+    public Product(int id, String name, int price, String link) {
         this.id = id;
         this.name = name;
         this.price = price;
         this.link = link;
-        this.quantity = quantity;
     }
 
     public int getId() {
@@ -40,11 +40,11 @@ public class Product {
         this.name = name;
     }
 
-    public String getPrice() {
+    public int getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 
@@ -54,13 +54,5 @@ public class Product {
 
     public void setLink(String link) {
         this.link = link;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
     }
 }

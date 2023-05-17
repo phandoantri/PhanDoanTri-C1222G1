@@ -1,5 +1,7 @@
 package com.example.ss10.dto;
 
+import com.example.ss10.model.Product;
+
 import java.util.LinkedHashMap;
 import java.util.Map;
 
