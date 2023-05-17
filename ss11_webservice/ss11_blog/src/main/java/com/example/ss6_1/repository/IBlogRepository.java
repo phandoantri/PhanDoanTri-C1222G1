@@ -11,6 +11,6 @@ import java.util.List;
 
 public interface IBlogRepository extends JpaRepository<Blog,Integer> {
     Page<Blog> findAll(Pageable pageable);
-@Query(value = "select * from blog_manager bm join type_blog tb on tb.id_type_blog = bm.id_type_blog where name_type_blog like concat(?)",nativeQuery = true)
+@Query(value = "select * from blog_manager bm join type_blog tb on tb.id_type_blog = bm.id_type_blog where name_type_blog like ?",nativeQuery = true)
     List<Blog> findByName(String name);
 }

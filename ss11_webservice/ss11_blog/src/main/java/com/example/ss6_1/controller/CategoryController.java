@@ -23,7 +23,11 @@ public class CategoryController {
 
     @GetMapping()
     public ResponseEntity<List<TypeBlog>> showListTypeBlog() {
-        return new ResponseEntity<>(this.iTypeBlogService.getAll(), HttpStatus.OK);
+        List<TypeBlog> typeBlogList=this.iTypeBlogService.getAll();
+        if ((typeBlogList.isEmpty())){
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(typeBlogList, HttpStatus.OK);
     }
 
 }

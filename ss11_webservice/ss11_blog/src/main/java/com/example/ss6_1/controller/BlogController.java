@@ -15,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/blogs")
@@ -26,15 +27,27 @@ public class BlogController {
 
     @GetMapping()
     public ResponseEntity<List<Blog>> showListBlog() {
-       return new ResponseEntity<>(this.iBlogService.getAll(), HttpStatus.OK);
+        List<Blog> blogList=this.iBlogService.getAll();
+        if (blogList.isEmpty()){
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+       return new ResponseEntity<>(blogList, HttpStatus.OK);
 
     }
     @GetMapping("/findListBlog/{name}")
     public ResponseEntity<List<Blog>> listBlog(@PathVariable String name){
-        return new ResponseEntity<>(this.iBlogService.findByName(name), HttpStatus.OK);
+        List<Blog> blogList=this.iBlogService.findByName(name);
+        if (!blogList.isEmpty()){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(blogList, HttpStatus.OK);
     }
     @GetMapping("/findById/{id}")
     public ResponseEntity<Blog> listBlog(@PathVariable int id){
-        return new ResponseEntity<>(this.iBlogService.findById(id), HttpStatus.OK);
+        Optional<Blog> blog=this.iBlogService.findById(id);
+        if (!blog.isPresent()){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(blog.get(), HttpStatus.OK);
     }
 }
