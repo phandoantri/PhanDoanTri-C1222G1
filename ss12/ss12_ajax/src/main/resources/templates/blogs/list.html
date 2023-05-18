@@ -26,15 +26,18 @@
   </tr>
   <tbody id="blogList"></tbody>
 </table>
+<a onclick="getAll()">Read more</a>
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.0/dist/jquery.min.js"></script>
 <script>
+  let page = 0;
   function getAll(){
     $.ajax({
-      url: "http://localhost:8080/blogs",
+      url: `http://localhost:8080/blogs?page=${page}`,
       type: "get",
       success :function (blogs){
         let blogList="";
-        for (let blog of blogs){
+        debugger
+        for (let blog of blogs.content){
           blogList+=`
           <tr>
           <td>${blog.id}</td>
@@ -45,7 +48,8 @@
 </tr>
           `;
         }
-        $('#blogList').html(blogList)
+        $('#blogList').append(blogList)
+        page++;
       }
     })
   }

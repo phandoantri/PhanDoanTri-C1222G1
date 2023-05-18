@@ -27,8 +27,8 @@ public class BlogController {
     private ITypeBlogService iTypeBlogService;
 
     @GetMapping()
-    public ResponseEntity<List<Blog>> showListBlog() {
-        List<Blog> blogList=this.iBlogService.getAll();
+    public ResponseEntity<Page<Blog>> showListBlog(@PageableDefault(size =1)Pageable pageable ) {
+        Page<Blog> blogList=this.iBlogService.getAll(pageable);
         if (blogList.isEmpty()){
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
