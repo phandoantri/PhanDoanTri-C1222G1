@@ -54,8 +54,8 @@
     })
   }
 
-  function searchBlogByName(name) {
-    name = $("#nameTypeBlog").val();
+  function searchBlogByName() {
+   let name = $("#nameTypeBlog").val();
     debugger
     $.ajax({
       url: `http://localhost:8080/blogs/findListBlog/${name}`,
